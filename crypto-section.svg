@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="297mm"
+   height="210mm"
+   viewBox="0 0 297 210"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.2 2405546, 2018-03-11"
+   sodipodi:docname="crypto-section.svg">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.98994949"
+     inkscape:cx="563.99026"
+     inkscape:cy="373.39106"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1016"
+     inkscape:window-x="0"
+     inkscape:window-y="1110"
+     inkscape:window-maximized="1"
+     showguides="true"
+     inkscape:guide-bbox="true">
+    <sodipodi:guide
+       position="0,79.646317"
+       orientation="0,1"
+       id="guide4721"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="-9.0871642,113.85682"
+       orientation="0,1"
+       id="guide4723"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="-12.027129,147.80005"
+       orientation="0,1"
+       id="guide4725"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="252.83698,39.28862"
+       orientation="1,0"
+       id="guide4727"
+       inkscape:locked="false" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-87)">
+    <rect
+       id="rect3713"
+       width="88.03833"
+       height="27.970238"
+       x="27.970238"
+       y="135.60417"
+       style="opacity:1;fill:#0d76bd;fill-opacity:1;stroke-width:0.27798727" />
+    <rect
+       id="rect3713-3"
+       width="88.03833"
+       height="27.970238"
+       x="27.970238"
+       y="168.866"
+       style="opacity:1;fill:#f7ce17;fill-opacity:1;stroke-width:0.27798727" />
+    <rect
+       id="rect3713-6"
+       width="88.03833"
+       height="27.970238"
+       x="27.970238"
+       y="202.657"
+       style="opacity:1;fill:#8ac541;fill-opacity:1;stroke-width:0.27798727" />
+    <rect
+       id="rect3713-3-7"
+       width="88.03833"
+       height="27.970238"
+       x="27.970238"
+       y="235.91884"
+       style="opacity:1;fill:#c01e30;fill-opacity:1;stroke-width:0.27798727" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="36.27882"
+       y="186.07239"
+       id="text4555"><tspan
+         sodipodi:role="line"
+         id="tspan4553"
+         x="36.27882"
+         y="186.07239"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:8.46666622px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;opacity:1;stroke-width:0.26458332">KEY EXCHANGE</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="30.057716"
+       y="152.7859"
+       id="text4555-9"><tspan
+         sodipodi:role="line"
+         id="tspan4553-3"
+         x="30.057716"
+         y="152.7859"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:8.46666622px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;opacity:1;stroke-width:0.26458332">(DE|EN)CRYPTION</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="31.116051"
+       y="219.98917"
+       id="text4555-9-9"><tspan
+         sodipodi:role="line"
+         id="tspan4553-3-2"
+         x="31.116051"
+         y="219.98917"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:8.46666622px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;opacity:1;stroke-width:0.26458332">AUTHENTICATION</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="49.012363"
+       y="253.58981"
+       id="text4555-9-8"><tspan
+         sodipodi:role="line"
+         id="tspan4553-3-3"
+         x="49.012363"
+         y="253.58981"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:8.46666622px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;opacity:1;stroke-width:0.26458332">HASHING</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="137.10927"
+       y="215.75008"
+       id="text4603"><tspan
+         sodipodi:role="line"
+         id="tspan4601"
+         x="137.10927"
+         y="225.11385"
+         style="stroke-width:0.26458332" /></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="253.52962"
+       y="220.20238"
+       id="text4555-9-9-0"><tspan
+         sodipodi:role="line"
+         id="tspan4553-3-2-1"
+         x="253.52962"
+         y="220.20238"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:8.46666622px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:end;writing-mode:lr-tb;text-anchor:end;opacity:1;fill:#8ac541;fill-opacity:1;stroke-width:0.26458332">RSA, DSA, ECDSA, ...</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#f7ce17;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="253.15784"
+       y="186.00636"
+       id="text4555-9-9-0-2"><tspan
+         sodipodi:role="line"
+         id="tspan4553-3-2-1-0"
+         x="253.15784"
+         y="186.00636"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:8.46666622px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:end;writing-mode:lr-tb;text-anchor:end;opacity:1;fill:#f7ce17;fill-opacity:1;stroke-width:0.26458332">RSA, DH, ECDH, ...</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#0d76bd;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="252.62112"
+       y="146.53117"
+       id="text4555-9-9-0-2-2"><tspan
+         sodipodi:role="line"
+         id="tspan4553-3-2-1-0-1"
+         x="252.62112"
+         y="146.53117"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:8.46666622px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:end;writing-mode:lr-tb;text-anchor:end;opacity:1;fill:#0d76bd;fill-opacity:1;stroke-width:0.26458332">ASYMETRIC (RSA, ECC, ...)</tspan><tspan
+         sodipodi:role="line"
+         x="255.56462"
+         y="159.76035"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:8.46666622px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;opacity:1;fill:#0d76bd;fill-opacity:1;stroke-width:0.26458332"
+         id="tspan4715"><tspan
+   style="text-align:end;text-anchor:end"
+   id="tspan4717">SYMMETRIC (DES, AES, ...)</tspan> </tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="134.16541"
+       y="253.55759"
+       id="text4555-9-9-0-7"><tspan
+         sodipodi:role="line"
+         id="tspan4553-3-2-1-5"
+         x="134.16541"
+         y="253.55759"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:8.46666622px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;opacity:1;fill:#c01e30;fill-opacity:1;stroke-width:0.26458332">MD5, <tspan
+   style="text-align:end;text-anchor:end"
+   id="tspan4719">SHA</tspan>-1, SHA-256, ...</tspan></text>
+  </g>
+</svg>
