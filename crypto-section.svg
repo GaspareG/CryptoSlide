@@ -191,14 +191,13 @@
          id="tspan4553-3-2-1-0-1"
          x="252.62112"
          y="146.53117"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:8.46666622px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:end;writing-mode:lr-tb;text-anchor:end;opacity:1;fill:#0d76bd;fill-opacity:1;stroke-width:0.26458332">ASYMETRIC (RSA, ECC, ...)</tspan><tspan
+         
+style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:8.46666622px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:end;writing-mode:lr-tb;text-anchor:end;opacity:1;fill:#0d76bd;fill-opacity:1;stroke-width:0.26458332">ASYMMETRIC (RSA, ECC, ...)</tspan><tspan
          sodipodi:role="line"
          x="255.56462"
          y="159.76035"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:8.46666622px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;opacity:1;fill:#0d76bd;fill-opacity:1;stroke-width:0.26458332"
-         id="tspan4715"><tspan
-   style="text-align:end;text-anchor:end"
-   id="tspan4717">SYMMETRIC (DES, AES, ...)</tspan> </tspan></text>
+         id="tspan4715"><tspan   style="text-align:end;text-anchor:end"   id="tspan4717">SYMMETRIC (DES, AES, ...)</tspan> </tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
