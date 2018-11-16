@@ -355,31 +355,139 @@ Se $n_1 = p*q^{'}$ e $n_2 = p*q^{''}$ allora $p = \gcd(n_1, n_2)$.
 
 \begin{frame}{Creare confusione}
 
-Chiamiamo hash una funzione \textit{non invertibile} che associa 
+\pause
 
-\begin{itemize}
-  \item Resis
-\end{itemize}
-
+Chiamiamo hash una funzione $f$ \textit{non invertibile} che associa una stringa ad una stringa di dimensione fissata. Con le seguenti proprietà:
 
 \pause
 
-Funzioni di hash famose sono l'MD5, SHA-1, SHA-256, SHA-384, ...
+\begin{itemize}
+  \item Resistenza alla preimmagine: dato un hash $h$ è difficile trovare $m$ tale che $f(m) = h$.
+  \item Resistenza alla seconda preimmagine: dato $m_1$ è difficile trovare $m_2$ tale che $f(m_1) = f(m_2)$.
+  \item Resistenza alle collisioni: è difficile trovare coppie $(m_1, m_2)$ tali che $f(m_1) = f(m_2)$.
+\end{itemize}
 
 \pause
 
 Utilizzi pratici:
 
 \begin{itemize}
-  \item Salvataggio delle password (preferibilmente con un salt).
-  \item Creazione di hashtable (struttura dati con accesso diretto).
+  \item Salvataggio delle password (hashate invece che in chiaro).
+  \item Creazione di hashtable (struttura dati ad accesso diretto).
   \item Controllo di integrità (\textit{md5sum}, \textit{sha1sum}).
   \item Firma digitale (sull'hash invece che sul documento).
 \end{itemize}
 
 \end{frame}
 
-\begin{frame}{Alla ricerca dell'inversa}
+\begin{frame}{MD5}
+  
+    \pause
+  Inventato da Rivest nel 1991, divenne la funzione di hash standard fino al 2004-2006.
+  Viene utilizzata ancora adesso per il controllo di integrità.
+    
+    \pause
+  \medskip
+  
+  \centering
+  {
+  \includegraphics[width=3.8cm]{img/md5}
+  }
+  
+    \pause
+  md5("password") = \texttt{5F4DCC3B5AA765D61D8327DEB882CF99}
+  
+    \pause
+  md5("passwore") = \texttt{A826176C6495C5116189DB91770E20CE}
+  
+\end{frame}
+
+\begin{frame}{Proof of Work}
+    \pause
+
+    Spesso, come sistema di protezione per attacchi DOS o per altri motivi, ci viene chiesto di reversare (completamente o parzialmente) un hash.
+    
+    \pause \medskip
+        
+    L'accesso ad una risorsa ci verrà fornito solo dopo aver dimostrato (\textit{Proof of Work}) la risoluzione ad un problema.
+    Nel caso dell'hashing questa operazione viene chiamata hashcash (ed è alla base del mining delle criptovalute).
+    
+    \medskip
+    
+    \pause
+
+    Esempio (VolgaCtf2017):
+    
+    \texttt{Solve a puzzle: find an x such that 26 last bits of SHA1(x) are set, len(x)==29 and x[:24]=='58a5a7950d2ec81fae5c1c74'}
+    
+\end{frame}
+
+\begin{frame}{Trovare le collisioni pt.1}
+
+    Come trovo una collisione / preimmagine?
+    
+    \pause
+
+    \begin{itemize}
+      \item Database online (es. crackstation.net), immediato ma non completo.
+      \item Bruteforce (es. John The Ripper, HashCat), lento ma completo.
+    \end{itemize}
+    
+    \medskip
+    \pause
+    
+    Quanti tentativi dovrò fare per reversare un hash?
+    
+    \pause
+    \medskip
+    
+    Paradosso dei compleanni: 
+    
+    se la funzione hash restituisce un output da $n$ bit ($m = 2^n$ possibili hash) si avrà una collisione al 50\% di probabilità dopo $2^{(n/2)}$ tentativi ($sqrt(m)$).
+    
+\end{frame}
+
+\begin{frame}{Trovare le collisioni pt.2}
+
+    John The Ripper
+    
+    \medskip
+    
+    \centering\includegraphics[width=8cm]{img/john}
+    
+\end{frame}
+    
+\begin{frame}{Trovare le collisioni pt.3}
+
+    Hashcat
+    
+    \medskip
+    
+    \centering\includegraphics[width=8cm]{img/hashcat}
+    
+\end{frame}
+    
+\begin{frame}{Basta un poco di sale...}
+  
+  ...e la password non va giù.
+  
+  \medskip
+
+  \pause
+  Abbiamo parlato di come \textit{non salvare le password in chiaro} bensì salvare il loro hash.
+  
+  \medskip
+  \pause
+
+  Problema: 
+  
+  Se più persone usano le stessa password (tipico: \textit{qwerty}, \textit{123456}, ...) avrò hash duplicati nel database.
+  
+  \medskip
+  \pause
+  Soluzione: 
+  
+  Salvare f(password + salt) invece che f(password), dove \textit{salt} è una stringa casuale generata per persona (possibilmente memorizzata in un luogo separato ai dati di login).
   
 \end{frame}
 
