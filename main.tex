@@ -101,10 +101,13 @@
 
 \begin{frame}{Crittografia simmetrica}
 
-  I cifrari simmetrici sono quelli dove i messaggi $m$ vengono cifrati e decifrati usando una stessa chiave $k$, che deve essere nota esclusivamente alle due parti.
+  \pause
+
+  I cifrari simmetrici sono quelli dove i messaggi $m$ vengono cifrati e decifrati usando una stessa chiave $k$, che deve essere nota solo ed esclusivamente alle due parti.
   
   \medskip
 
+  \pause
   $\mathcal{C}(m, k) = c$ (funzione di cifratura)
     
   $\mathcal{D}(c, k) = m$ (funzione di decifratura)
@@ -116,12 +119,34 @@
   $\mathcal{D}(\mathcal{C}(m, k), k) = m$ (il messaggio originale non viene alterato durante lo scambio).
   
   \medskip
+  \pause
   
   Per esempio nel cifrario di Cesare:
   
   $\mathcal{C}(m, k) = $ ruota in avanti di $k$ ogni singolo carattere.
   
   $\mathcal{D}(c, k) = $ ruota indietro di $k$ ogni singolo carattere.
+  
+\end{frame}
+
+\begin{frame}{I principi di Shannon}
+
+  \pause
+  Come valutiamo se un cifrario è abbastanza robusto? (Dove con robustezza è intesa la sua possibilità di essere attaccato con successo). 
+  
+  \medskip
+  \pause
+  Shannon definisce due concetti chiave:
+  
+  \begin{itemize}
+    \item Confusione: la chiave deve essere ben distribuita (ogni bit del cifrato dovrebbe dipendere da ogni bit della chiave).
+    \item Diffusione: il messaggio (ogni bit del cifrato dovrebbe dipende da ogni bit del messaggio).
+  \end{itemize}
+  
+  \medskip
+  \pause
+  
+  Nel caso del cifrario di Cesare non abbiamo nessun tipo di diffusione e una bassa confusione (perchè?).
   
 \end{frame}
 
