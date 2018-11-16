@@ -140,7 +140,7 @@
   
   \begin{itemize}
     \item Confusione: la chiave deve essere ben distribuita nel cifrato (ogni bit del cifrato dovrebbe dipendere da ogni bit della chiave).
-    \item Diffusione: il messaggio deve essere ben distribuito nel cifrato (ogni bit del cifrato dovrebbe dipende da ogni bit del messaggio).
+    \item Diffusione: il messaggio deve essere ben distribuito nel cifrato (ogni bit del cifrato dovrebbe dipendere da ogni bit del messaggio).
   \end{itemize}
   
   \medskip
@@ -184,7 +184,7 @@
   
   \texttt{m = 01100011 01101001 01100001 01101111} (ciao in ASCII).\\
   \texttt{k = 01111000 01111000 01111000 01111000} (x in ascii 4 volte)\\
-  \texttt{c = 00011011 00010001 00011001 00010111} (non stampabile, \texttt{GxEZFw==} in b4)
+  \texttt{c = 00011011 00010001 00011001 00010111} (non stampabile, \texttt{GxEZFw==} in b64)
   
   
 \end{frame}
@@ -254,11 +254,11 @@
   
   \medskip
   
-  $P(M = m | K = k) = P(M = m)$
+  $P(M = m | C = c) = P(M = m)$
   
   \medskip
   
-  Ovvero la probabilità che $M$ sia un certo messaggio sapendo la chiave $K$ è uguale alla probabilità che $M$ sia un certo messaggio non sapendo la chiave (tutti i messaggi sono equiprobabili, la chiave non ci fornisce informazioni sul messaggio originale).
+  Ovvero la probabilità che $M$ sia un certo messaggio sapendo che il cifrato è $C$ è uguale alla probabilità che $M$ sia un certo messaggio non sapendo il cifrato (tutti i messaggi sono equiprobabili, il messaggio cifrato non ci fornisce informazioni sulla chiave usata).
   
   \medskip
   
@@ -424,7 +424,7 @@ I valori $e$ e $d$ sono calcolati in modo che $ed \equiv 1$ (mod $\phi(n)$).
 
 \medskip
 
-$\mathcal{D}(\mathcal{C}(m, k), k) = m^{ed} = m^{\phi(n)*t + 1} = m^{\phi(n)^{t}} * m = 1 * m = m$
+$\mathcal{D}(\mathcal{C}(m, k_{pub}), k_{priv}) = m^{ed} = m^{\phi(n)*t + 1} = m^{\phi(n)^{t}} * m = 1 * m = m$
 
 \end{frame}
 

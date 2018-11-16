@@ -139,8 +139,8 @@
   Shannon definisce due concetti chiave:
   
   \begin{itemize}
-    \item Confusione: la chiave deve essere ben distribuita (ogni bit del cifrato dovrebbe dipendere da ogni bit della chiave).
-    \item Diffusione: il messaggio (ogni bit del cifrato dovrebbe dipende da ogni bit del messaggio).
+    \item Confusione: la chiave deve essere ben distribuita nel cifrato (ogni bit del cifrato dovrebbe dipendere da ogni bit della chiave).
+    \item Diffusione: il messaggio deve essere ben distribuito nel cifrato (ogni bit del cifrato dovrebbe dipendere da ogni bit del messaggio).
   \end{itemize}
   
   \medskip
@@ -152,21 +152,140 @@
 
 \begin{frame}{XOR cipher}
 
+  Consideriamo l'operazione XOR $\oplus$ (or esclusivo), valgono le seguenti proprietà:
+  
+  \begin{itemize}
+    \item $0 \oplus 0 = 1 \oplus 1 = 0$ 
+    \item $0 \oplus 1 = 0 \oplus 1 = 1$ 
+    \item $x \oplus y \oplus y = x$ 
+  \end{itemize}
+  
+  \medskip
+  \pause
+  
+  Definiamo lo XOR cipher come:
+    
+  $\mathcal{C}(m, k) = m \oplus k$ 
+  
+  $\mathcal{D}(c, k) = c \oplus k$
+
+  \medskip
+  
+  \pause
+
+  Problema: la chiave $k$ potrebbe essere più corta del messaggio $m$.
+  
+  Soluzione: usiamo ripetutamente la chiave: $k^{'} = k \cdot k \cdot \ldots \cdot k$ fino a raggiungere (o superare) la lunghezza di $m$.
+
+  \medskip
+  \pause
+  
+  Esempio:
+  
+  \texttt{m = 01100011 01101001 01100001 01101111} (ciao in ASCII).\\
+  \texttt{k = 01111000 01111000 01111000 01111000} (x in ascii 4 volte)\\
+  \texttt{c = 00011011 00010001 00011001 00010111} (non stampabile, \texttt{GxEZFw==} in b64)
+  
+  
 \end{frame}
 
 \begin{frame}{Crittoanalisi statistica}
-  Spesso le vulnerabilità non è nell'algoritmo ma nella sua applicazione...
+
+  \pause
   
+  Spesso la vulnerabilità non è nell'algoritmo ma nella sua applicazione...
+  
+  \pause
+
+  \medskip
+
   \begin{itemize}
-    \item 
+    \item La chiave è troppo corta rispetto al messaggio
+    \item La chiave viene ripetuta svariate volte per cifrare diversi messaggi
+    \item I messaggi usano un dizionario mal distribuito.
+    \item Conosciamo il formato del messaggio (es: \texttt{flag\{$\ldots$\}})
   \end{itemize}
+  
+  \medskip
+  
+  \pause
+
+  In particolare parliamo di crittoanalisi statistica quando forziamo il cifrario non dal punto di vista algoritmico ma da quello statistico.
+  
+  \pause
+
+  Ad esempio in italiano il $33\%$ delle lettere usate è una tra le vocali \texttt{a, e, i} mentre solo con probabilità dello $0.5\%$ si tratterà di una \texttt{z} o una \texttt{q}.
+
+
 \end{frame}
+
+\begin{frame}{Crittoanalisi statistica}
+  
+  \centering
+  
+  Strumento comodo per l'analisi statistica dei messaggi cifrati:
+
+  \includegraphics[width=5.5cm]{img/xortool} 
+
+  \pause
+  
+  Conoscendo la parte iniziale si intravedono delle parole in chiaro:
+   
+  \centering\includegraphics[width=4cm]{img/xor1} 
+
+  Andando a tentativi si ricostruire la flag finale:
+  
+  
+  \centering\includegraphics[width=4cm]{img/xor2} 
+  
+\end{frame}
+
 
 \begin{frame}{One-time Pad}
   
-  Il Cifrario di Vernam .
+  \pause
   
-  Chiamato anche one-time pad poichè
+  Il problema dello XOR cipher è che cifrare usando ripetutamente la stessa chiave può far trapelare delle informazioni \textit{statistiche} sul messaggio originale.
+  
+  \medskip
+  
+  \pause
+  Parliamo quindi di Cifrario di Vernam (o one-time pad) quando la lunghezza della chiave è uguale a quella del messaggio, questo cifrario è chiamato \textit{perfetto} perchè vale:
+  
+  \medskip
+  
+  $P(M = m | C = c) = P(M = m)$
+  
+  \medskip
+  
+  Ovvero la probabilità che $M$ sia un certo messaggio sapendo la chiave $K$ è uguale alla probabilità che $M$ sia un certo messaggio non sapendo la chiave (tutti i messaggi sono equiprobabili, la chiave non ci fornisce informazioni sul messaggio originale).
+  
+  \medskip
+  
+  \pause
+
+  Bello in teoria, ma:
+  
+  \begin{itemize}
+    \item La chiave deve essere scambiata usando un metodo sicuro (scambiarle \textit{a mano}).
+    \item La chiave deve essere generata casualmente e non riusata (altrimenti è possibile un many-time pad attack).
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}{DES \& AES}
+  
+  Data Encryption Standard (DES) e Advanced Encryption Standard (AES) si basano sul concetto della \textit{S-Box} (scatola della sostituzione).
+
+  \pause
+  
+  \medskip
+  
+  \centering\includegraphics[width=5cm]{img/des} 
+  
+  \medskip
+
+  La confusione e la diffusione vengono implementate effettuando un (elevato) numero di operazioni invertibili.
   
 \end{frame}
 
@@ -199,8 +318,8 @@
   
   Un esempio è il problema della fattorizzazione:
   \begin{itemize}
-    \item $m = f(\{p, q\}) = (p \times q)$ (calcolo del prodotto tra i primi $p$ e $q$).
-    \item $\{p, q\} = f^{-1}(n) =\ {\color{red}??} $ (scomposizione in fattori primi di $n$).
+    \item $m = f(\{p, q\}) = (p * q)$ (calcolo del prodotto tra i primi $p$ e $q$).
+    \item $\{p, q\} = f^{-1}(m) =\ {\color{red}??} $ (scomposizione in fattori primi di $n$).
   \end{itemize}
     
   \smallskip
@@ -221,7 +340,7 @@
 
 Diciamo che due interi $a$ e $b$ sono congrui modulo $n$, scritto $a \equiv b$ (mod $n$), se
 
-$(a\ \%\ n) = (b\ \%\ n)$ dove \% è il resto della divisione intero (modulo).
+$(a\ \%\ n) = (b\ \%\ n)$ dove \% è il resto della divisione intera (modulo).
 
 \medskip
 
@@ -246,7 +365,7 @@ Alcune proprietà matematiche:
 
 \pause
 
-L'algoritmo di cifratura asimmetrica più famoso è l'RSA (da {\color{red}R}ivest {\color{red}S}hamir {\color{red}A}dleman) che si basa sul problema della fattorizzazione e sull'algebra modulare.
+L'algoritmo di cifratura asimmetrica più famoso è l'RSA (da {\color{red}R}ivest {\color{red}S}hamir {\color{red}A}dleman) che si basa sul problema della fattorizzazione e sull'aritmetica modulare.
 
 \pause
 
@@ -305,7 +424,7 @@ I valori $e$ e $d$ sono calcolati in modo che $ed \equiv 1$ (mod $\phi(n)$).
 
 \medskip
 
-$\mathcal{D}(\mathcal{C}(m, k), k) = m^{ed} = m^{\phi(n)*t + 1} = m^{\phi(n)^{t}} * m = 1 * m = m$
+$\mathcal{D}(\mathcal{C}(m, k_{pub}), k_{pub}) = m^{ed} = m^{\phi(n)*t + 1} = m^{\phi(n)^{t}} * m = 1 * m = m$
 
 \end{frame}
 
@@ -506,7 +625,7 @@ Utilizzi pratici:
 
   Problema: 
   
-  Se più persone usano le stessa password (tipico: \textit{qwerty}, \textit{123456}, ...) avrò hash duplicati nel database.
+  Se più persone usano le stessa password (tipico: \textit{qwerty}, \textit{123456}, ..., vedi SAW17/18) avrò hash duplicati nel database.
   
   \medskip
   \pause
