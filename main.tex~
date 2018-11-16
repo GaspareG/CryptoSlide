@@ -99,7 +99,74 @@
 	\centering
 \end{frame}
 
-\begin{frame}
+\begin{frame}{Crittografia simmetrica}
+
+  \pause
+
+  I cifrari simmetrici sono quelli dove i messaggi $m$ vengono cifrati e decifrati usando una stessa chiave $k$, che deve essere nota solo ed esclusivamente alle due parti.
+  
+  \medskip
+
+  \pause
+  $\mathcal{C}(m, k) = c$ (funzione di cifratura)
+    
+  $\mathcal{D}(c, k) = m$ (funzione di decifratura)
+  
+  \medskip
+
+  Ovviamente deve valere che:
+  
+  $\mathcal{D}(\mathcal{C}(m, k), k) = m$ (il messaggio originale non viene alterato durante lo scambio).
+  
+  \medskip
+  \pause
+  
+  Per esempio nel cifrario di Cesare:
+  
+  $\mathcal{C}(m, k) = $ ruota in avanti di $k$ ogni singolo carattere.
+  
+  $\mathcal{D}(c, k) = $ ruota indietro di $k$ ogni singolo carattere.
+  
+\end{frame}
+
+\begin{frame}{I principi di Shannon}
+
+  \pause
+  Come valutiamo se un cifrario è abbastanza robusto? (Dove con robustezza è intesa la sua possibilità di essere attaccato con successo). 
+  
+  \medskip
+  \pause
+  Shannon definisce due concetti chiave:
+  
+  \begin{itemize}
+    \item Confusione: la chiave deve essere ben distribuita (ogni bit del cifrato dovrebbe dipendere da ogni bit della chiave).
+    \item Diffusione: il messaggio (ogni bit del cifrato dovrebbe dipende da ogni bit del messaggio).
+  \end{itemize}
+  
+  \medskip
+  \pause
+  
+  Nel caso del cifrario di Cesare non abbiamo nessun tipo di diffusione e una bassa confusione (perchè?).
+  
+\end{frame}
+
+\begin{frame}{XOR cipher}
+
+\end{frame}
+
+\begin{frame}{Crittoanalisi statistica}
+  Spesso le vulnerabilità non è nell'algoritmo ma nella sua applicazione...
+  
+  \begin{itemize}
+    \item 
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{One-time Pad}
+  
+  Il Cifrario di Vernam .
+  
+  Chiamato anche one-time pad poichè
   
 \end{frame}
 
@@ -113,6 +180,194 @@
 	\centering
 \end{frame}
 
+\begin{frame}{Concetti base}
+  La crittografia asimmetrica si basa sulle funzioni \textit{one-way trapdoor} e sulla presenza di una coppia di chiavi (chiamate chiave pubblica e chiave privata).
+  
+  \pause
+  
+  \medskip
+  
+  Una funzione $f$ si dice \textit{trapdoor} se: 
+  \begin{itemize}
+    \item Calcolare $y = f(x)$ è computazionalmente facile.
+    \item Calcolare $x = f^{-1}(y)$ è computazionalmente difficile \textit{(senza nessuna informazione aggiuntiva)}.
+  \end{itemize}
+
+  \pause
+  
+  \smallskip
+  
+  Un esempio è il problema della fattorizzazione:
+  \begin{itemize}
+    \item $m = f(\{p, q\}) = (p \times q)$ (calcolo del prodotto tra i primi $p$ e $q$).
+    \item $\{p, q\} = f^{-1}(n) =\ {\color{red}??} $ (scomposizione in fattori primi di $n$).
+  \end{itemize}
+    
+  \smallskip
+  
+  \pause
+  
+  $f(\{49171, 61843\}) = 3040882153$ (facile quanto aprire una calcolatrice).
+  $f^{-1}(1841488427) = ??$ (devo provare tutti i divisori da $2$ a $\sqrt{n}$).
+  
+  \pause
+  
+  Il problema diventa banale se conosco uno dei due divisori:
+  $1841488427 / 58049 = 31723$
+
+\end{frame}
+
+\begin{frame}{Aritmetica modulare}
+
+Diciamo che due interi $a$ e $b$ sono congrui modulo $n$, scritto $a \equiv b$ (mod $n$), se
+
+$(a\ \%\ n) = (b\ \%\ n)$ dove \% è il resto della divisione intero (modulo).
+
+\medskip
+
+\pause
+
+Alcune proprietà matematiche:
+
+\pause
+
+\begin{itemize}
+  \item $a + k\equiv b + k$ (mod $n$), invariante per addizione.
+  \item $k*a \equiv k*b$ (mod $n$), invariante per moltiplicazione.
+  \item $a^k \equiv b^k$ (mod $n$), invariante per potenza.\pause
+  \item $\sqrt{a} \equiv b$ (mod $n$) se $a \equiv b^2$ (mod $n$), radice quadrata.
+  \item $a^{-1} \equiv b$ (mod $n$) se $ab \equiv 1$ (mod $n$), inverso moltiplicativo.
+  \item ...
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{RSA pt.1}
+
+\pause
+
+L'algoritmo di cifratura asimmetrica più famoso è l'RSA (da {\color{red}R}ivest {\color{red}S}hamir {\color{red}A}dleman) che si basa sul problema della fattorizzazione e sull'algebra modulare.
+
+\pause
+
+\smallskip
+
+Il funzionamento di base è:\pause
+
+\begin{itemize}
+  \item Si scelgono due numeri primi a caso $p$ e $q$ (in modo \textit{sicuro}).\pause
+  \item Si calcola il prodotto $n = p*q$ (che sarà il nostro modulo).\pause
+  \item Si calcola il toziente $\phi(n) = (p-1)*(q-1)$ (il numero dei coprimi con $n$).\pause
+  \item Si sceglie a caso un numero $e$, coprimo e minore di $\phi(n)$.\pause
+  \item Si calcola il numero $d$ come inverso moltiplicativo di $e$, ovvero $ed \equiv 1$ (mod $\phi(n)$).
+\end{itemize}
+
+\medskip
+
+\pause
+
+Chiamiamo quindi:
+
+\pause
+
+$k_{pub} = (n, e)$ la chiave pubblica che distribuiamo.
+
+\pause
+
+$k_{priv} = (n, d)$ la chiave privata che teniamo segreta.
+
+\end{frame}
+
+\begin{frame}{RSA pt.2}
+
+Una volta calcolata la chiave pubblica e quella privata possiamo cifrare e decifrare i messaggi in questo modo:
+
+\pause
+\medskip
+
+$\mathcal{C}(m, k_{pub}) = m^{e} $ (mod $n$) \pause
+  
+$\mathcal{D}(c, k_{priv}) = c^{d} $ (mod $n$)
+
+\medskip
+
+\pause
+
+Si ma perchè funziona?
+
+\medskip
+
+\pause
+
+Dal teorema di Eulero sappiamo che $m^{\phi(n)} \equiv 1 $ (mod $n$).
+
+I valori $e$ e $d$ sono calcolati in modo che $ed \equiv 1$ (mod $\phi(n)$).
+
+\medskip
+
+$\mathcal{D}(\mathcal{C}(m, k), k) = m^{ed} = m^{\phi(n)*t + 1} = m^{\phi(n)^{t}} * m = 1 * m = m$
+
+\end{frame}
+
+\begin{frame}{Un esempio per capire}
+  
+\pause
+
+  Scegliamo i sequenti parametri:
+  
+  \begin{itemize}
+    \item $p = 13$ e $q = 23$
+    \item $n = p*q = 299$
+    \item $\phi(n) = (13-1)*(23-1) = 264$
+    \item $e = 7$, $\gcd(264, 7) = 1$
+    \item $d = 151$, $7*151 \equiv 1 $ (mod $264$)
+  \end{itemize}
+  
+  \smallskip
+  
+\pause
+
+  Quindi $k_{pub} = (299, 7)$ e $k_{priv} = (299, 151)$. Vogliamo cifrare $m = 42$.
+  
+\pause
+
+  \medskip
+  
+  $\mathcal{C}(m, k_{pub}) = m^{e} = 42^7 = 230539333248 = 107$ (mod $299$) 
+ 
+ \pause
+  
+  $\mathcal{D}(c, k_{priv}) = c^{d} = 107^{151} = 2743956545...948643 = 42 $ (mod $299$)
+
+\end{frame}
+
+\begin{frame}{(Non tanto) a caso}
+
+\pause
+
+"Si scelgono due numeri primi \textit{a caso} $p$ e $q$ (in modo \textit{sicuro})"
+
+\begin{itemize}
+  \item Scegliere $p$ e $q$ di almeno $1024$ bit.
+  \item Scegliere $p$ e $q$ non troppo vicini tra loro.
+  \item Non riusare uno dei primi per altri moduli.
+\end{itemize}
+
+\smallskip
+\pause
+Con la potenza di calcolo attuale è possibile fattorizzare semiprimi fino a (circa) $768$ bit, i moduli più grandi sono (per ora) resistenti agli attacchi bruteforce.
+
+\smallskip
+\pause
+Se $p$ e $q$ sono vicini allora abbiamo che $n \simeq p^2 \simeq q^2$ e quindi anche $\sqrt{n}$ sarà vicino ai primi. Basterà quindi un attacco bruteforce che cerca i fattori vicino alla radice quadrata.
+
+\smallskip
+\pause
+
+Se $n_1 = p*q^{'}$ e $n_2 = p*q^{''}$ allora $p = \gcd(n_1, n_2)$.
+
+\end{frame}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -123,6 +378,166 @@
 	\centering
 \end{frame}
 
+\begin{frame}{Creare confusione}
+
+\pause
+
+Chiamiamo hash una funzione $f$ \textit{non invertibile} che associa una stringa ad una stringa di dimensione fissata. Con le seguenti proprietà:
+
+\pause
+
+\begin{itemize}
+  \item Resistenza alla preimmagine: dato un hash $h$ è difficile trovare $m$ tale che $f(m) = h$.
+  \item Resistenza alla seconda preimmagine: dato $m_1$ è difficile trovare $m_2$ tale che $f(m_1) = f(m_2)$.
+  \item Resistenza alle collisioni: è difficile trovare coppie $(m_1, m_2)$ tali che $f(m_1) = f(m_2)$.
+\end{itemize}
+
+\pause
+
+Utilizzi pratici:
+
+\begin{itemize}
+  \item Salvataggio delle password (hashate invece che in chiaro).
+  \item Creazione di hashtable (struttura dati ad accesso diretto).
+  \item Controllo di integrità (\textit{md5sum}, \textit{sha1sum}).
+  \item Firma digitale (sull'hash invece che sul documento).
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{MD5}
+  
+    \pause
+  Inventato da Rivest nel 1991, divenne la funzione di hash standard fino al 2004-2006.
+  Viene utilizzata ancora adesso per il controllo di integrità.
+    
+    \pause
+  \medskip
+  
+  \centering
+  {
+  \includegraphics[width=3.8cm]{img/md5}
+  }
+  
+    \pause
+  md5("password") = \texttt{5F4DCC3B5AA765D61D8327DEB882CF99}
+  
+    \pause
+  md5("passwore") = \texttt{A826176C6495C5116189DB91770E20CE}
+  
+\end{frame}
+
+\begin{frame}{Proof of Work}
+    \pause
+
+    Spesso, come sistema di protezione per attacchi DOS o per altri motivi, ci viene chiesto di reversare (completamente o parzialmente) un hash.
+    
+    \pause \medskip
+        
+    L'accesso ad una risorsa ci verrà fornito solo dopo aver dimostrato (\textit{Proof of Work}) la risoluzione ad un problema.
+    Nel caso dell'hashing questa operazione viene chiamata hashcash (ed è alla base del mining delle criptovalute).
+    
+    \medskip
+    
+    \pause
+
+    Esempio (VolgaCtf2017):
+    
+    \texttt{Solve a puzzle: find an x such that 26 last bits of SHA1(x) are set, len(x)==29 and x[:24]=='58a5a7950d2ec81fae5c1c74'}
+    
+\end{frame}
+
+\begin{frame}{Trovare le collisioni pt.1}
+
+    Come trovo una collisione / preimmagine?
+    
+    \pause
+
+    \begin{itemize}
+      \item Database online (es. crackstation.net), immediato ma non completo.
+      \item Bruteforce (es. John The Ripper, HashCat), lento ma completo.
+    \end{itemize}
+    
+    \medskip
+    \pause
+    
+    Quanti tentativi dovrò fare per reversare un hash?
+    
+    \pause
+    \medskip
+    
+    Paradosso dei compleanni: 
+    
+    se la funzione hash restituisce un output da $n$ bit ($m = 2^n$ possibili hash) si avrà una collisione al 50\% di probabilità dopo $2^{(n/2)}$ tentativi ($sqrt(m)$).
+    
+\end{frame}
+
+\begin{frame}{Trovare le collisioni pt.2}
+
+    John The Ripper
+    
+    \medskip
+    
+    \centering\includegraphics[width=8cm]{img/john}
+    
+\end{frame}
+    
+\begin{frame}{Trovare le collisioni pt.3}
+
+    Hashcat
+    
+    \medskip
+    
+    \centering\includegraphics[width=8cm]{img/hashcat}
+    
+\end{frame}
+    
+\begin{frame}{Basta un poco di sale...}
+  
+  ...e la password non va giù.
+  
+  \medskip
+
+  \pause
+  Abbiamo parlato di come \textit{non salvare le password in chiaro} bensì salvare il loro hash.
+  
+  \medskip
+  \pause
+
+  Problema: 
+  
+  Se più persone usano le stessa password (tipico: \textit{qwerty}, \textit{123456}, ...) avrò hash duplicati nel database.
+  
+  \medskip
+  \pause
+  Soluzione: 
+  
+  Salvare f(password + salt) invece che f(password), dove \textit{salt} è una stringa casuale generata per persona (possibilmente memorizzata in un luogo separato ai dati di login).
+  
+\end{frame}
+
+\begin{frame}{Un (pessimo) esempio...}
+    \pause
+
+  \begin{figure}%
+    \centering
+    \subfloat{{
+  \centering\includegraphics[width=7cm]{img/trenitalia2} }}%
+  \pause
+    \qquad
+    \subfloat{{
+  \centering\includegraphics[width=5cm]{img/trenitalia} }}%
+    %\caption{2 Figures side by side}%
+    %\label{fig:example}%
+  \end{figure}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Fine}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \end{document}
