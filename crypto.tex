@@ -7,7 +7,7 @@
 \usepackage{subfig}
 \title{Cryptography}
 \author{Gaspare Ferraro\\ ferraro@gaspa.re}
-\subtitle{Hackers ahead of time}
+\subtitle{Hands-on session}
 
 
 \begin{document}
@@ -39,9 +39,41 @@
 	\centering
 \end{frame}
 
-\begin{frame}{Warning!}
+\begin{frame}{Disclaimer 1}
 
   \center {
+  
+    Crypto \textbf{is not} Cryptocurrency
+        
+    \medskip
+    
+    \pause
+
+    \includegraphics[width=0.3\textwidth]{img/crypto}
+    
+    \medskip
+    
+    \url{https://www.cryptoisnotcryptocurrency.com/}
+
+    \medskip
+
+    \includegraphics[width=0.3\textwidth]{img/blockchain}
+    
+    \pause
+
+
+    \medskip
+        
+    crittografia = kryptós + graphía (let. \textit{scrittura nascosta})
+  }
+  
+\end{frame}
+
+
+\begin{frame}{Disclaimer 2}
+
+  \center {
+
     In questo incontro si fa uso della {\color{red} \textit{matematica}}! 
     
     \medskip
@@ -54,12 +86,12 @@
     
     \pause
 
-    Non è sempre stato così però...
+    Un passo indietro nel tempo...
   }
   
 \end{frame}
 
-\begin{frame}{La crittografia ieri}
+\begin{frame}{La crittografia antica}
     
   \pause
 
@@ -77,6 +109,17 @@
 
 
 \end{frame}
+
+\begin{frame}{La crittografia meccanica}
+
+  \centering
+  
+    \includegraphics[width=0.6\textwidth]{img/enigma}
+
+  Enigma: macchina elettro-meccanica per cifrare e decifrare messaggi\\ usata dai nazisti durante la seconda guerra mondiale.
+
+\end{frame}
+
 
 \begin{frame}{La crittografia oggi}
   \center {
@@ -130,26 +173,82 @@
   
 \end{frame}
 
-\begin{frame}{I principi di Shannon}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{ROT\{13, 47\}}
 
-  \pause
-  Come valutiamo se un cifrario è abbastanza robusto? (Dove con robustezza è intesa la sua possibilità di essere attaccato con successo). 
-  
-  \medskip
-  \pause
-  Shannon definisce due concetti chiave:
-  
-  \begin{itemize}
-    \item Confusione: la chiave deve essere ben distribuita nel cifrato (ogni bit del cifrato dovrebbe dipendere da ogni bit della chiave).
-    \item Diffusione: il messaggio deve essere ben distribuito nel cifrato (ogni bit del cifrato dovrebbe dipendere da ogni bit del messaggio).
-  \end{itemize}
-  
-  \medskip
-  \pause
-  
-  Nel caso del cifrario di Cesare non abbiamo nessun tipo di diffusione e una bassa confusione (perchè?).
-  
+\centering
+
+\medskip
+
+ROT13: Cifrario di Cesare con $K = 13$ su alfabeto A-Z.
+
+ROT47: Cifrario di Cesare con $K = 47$ su dizionari ASCII (33 - 126).
+
+\medskip
+
+\includegraphics[width=8cm]{img/ROT13.png}
+
+\medskip
+
+Perchè $K = 13$ (or $K = 47$)? 
+Perchè \textcolor{red}{Encrypt = Decrypt}
+
 \end{frame}
+
+\begin{frame}{Cifrari classici}
+
+\textbf{Cifrari a sostituzione}
+
+\phantom{pad}- Cifrari monoalfabetici: \textcolor{red}{$C_{new} = P[C_{old}]$} (Dove $P$ è una permutazione dell'alfabeto)
+
+\smallskip
+
+\phantom{pad}(ROT-K è un cifrario monoalfabetico dove $P$ è una rotazione ciclica)
+
+\smallskip
+
+\phantom{pad}- Cifrari polialfabetici: i caratteri vengono sostituiti usando \textcolor{red}{molteplici dizionari}  
+
+\smallskip
+
+\textbf{Cifrari a trasposizione}
+
+\phantom{pad}Cifrari dove le \textcolor{red}{posizioni}, \phantom{pad}(di caratteri o gruppi di caratteri) del messaggio, sono \textcolor{red}{trasposti} secondo un sistema ben preciso.
+
+\smallskip
+
+E.g. Vogliamo cifrare il messaggio \textit{WE ARE DISCOVERED. FLEE AT ONCE}
+
+usando il \textbf{route cipher}:
+
+Griglia: 
+
+\centerline{\texttt{W R I O R F E O E}}
+\centerline{\texttt{E E S V E L A N J}}
+\centerline{\texttt{A D C E D E T C X}}
+
+Messaggio: \textit{EJXCTEDECDAEWRIORFEONALEVSE}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{dcode.fr}
+
+\centering
+
+\href{https://www.dcode.fr/tools-list}{https://www.dcode.fr/tools-list}
+
+\medskip
+
+\includegraphics[width=8cm]{img/dcode.png}
+
+\medskip
+
+\textcolor{red}{Quasi} tutti i possibili cifrari classici (e non), vecchi e nuovi, encoder/decoder, ...
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 \begin{frame}{XOR cipher}
 
@@ -189,6 +288,39 @@
   
   
 \end{frame}
+
+\begin{frame}{One-time Pad}
+  
+  \pause
+  
+  Il problema dello XOR cipher è che cifrare usando ripetutamente la stessa chiave può far trapelare delle informazioni \textit{statistiche} sul messaggio originale.
+  
+  \medskip
+  
+  \pause
+  Parliamo quindi di Cifrario di Vernam (o one-time pad) quando la lunghezza della chiave è uguale a quella del messaggio, questo cifrario è chiamato \textit{perfetto} perchè vale:
+  
+  \medskip
+  
+  $P(M = m | C = c) = P(M = m)$
+  
+  \medskip
+  
+  Ovvero la probabilità che $M$ sia un certo messaggio sapendo che il cifrato è $C$ è uguale alla probabilità che $M$ sia un certo messaggio non sapendo il cifrato (tutti i messaggi sono equiprobabili, il messaggio cifrato non ci fornisce informazioni sulla chiave usata).
+  
+  \medskip
+  
+  \pause
+
+  Bello in teoria, ma:
+  
+  \begin{itemize}
+    \item La chiave deve essere scambiata usando un metodo sicuro (scambiarle \textit{a mano}).
+    \item La chiave deve essere generata casualmente e non riusata (altrimenti è possibile un many-time pad attack).
+  \end{itemize}
+  
+\end{frame}
+
 
 \begin{frame}{Crittoanalisi statistica}
 
@@ -241,38 +373,42 @@
   
 \end{frame}
 
+\begin{frame}{Many-Time Pad Interactive}
+  
+  \url{https://github.com/CameronLonsdale/MTP}
+  
+  \smallskip
+  
+  \centering\includegraphics[width=8cm]{img/MTP} 
+ 
+  \smallskip
+  
+  \textit{"MTP Interactive uses automated cryptanalysis to present a partial decryption which can be solved interactively."}
+  
+   
+\end{frame}
 
-\begin{frame}{One-time Pad}
-  
-  \pause
-  
-  Il problema dello XOR cipher è che cifrare usando ripetutamente la stessa chiave può far trapelare delle informazioni \textit{statistiche} sul messaggio originale.
-  
-  \medskip
-  
-  \pause
-  Parliamo quindi di Cifrario di Vernam (o one-time pad) quando la lunghezza della chiave è uguale a quella del messaggio, questo cifrario è chiamato \textit{perfetto} perchè vale:
-  
-  \medskip
-  
-  $P(M = m | C = c) = P(M = m)$
-  
-  \medskip
-  
-  Ovvero la probabilità che $M$ sia un certo messaggio sapendo che il cifrato è $C$ è uguale alla probabilità che $M$ sia un certo messaggio non sapendo il cifrato (tutti i messaggi sono equiprobabili, il messaggio cifrato non ci fornisce informazioni sulla chiave usata).
-  
-  \medskip
-  
-  \pause
+\begin{frame}{I principi di Shannon}
 
-  Bello in teoria, ma:
+  \pause
+  Come valutiamo se un cifrario è abbastanza robusto? (Dove con robustezza è intesa la sua possibilità di essere attaccato con successo). 
+  
+  \medskip
+  \pause
+  Shannon definisce due concetti chiave:
   
   \begin{itemize}
-    \item La chiave deve essere scambiata usando un metodo sicuro (scambiarle \textit{a mano}).
-    \item La chiave deve essere generata casualmente e non riusata (altrimenti è possibile un many-time pad attack).
+    \item Confusione: la chiave deve essere ben distribuita nel cifrato (ogni bit del cifrato dovrebbe dipendere da ogni bit della chiave).
+    \item Diffusione: il messaggio deve essere ben distribuito nel cifrato (ogni bit del cifrato dovrebbe dipendere da ogni bit del messaggio).
   \end{itemize}
   
+  \medskip
+  \pause
+  
+  Nel caso del cifrario di Cesare non abbiamo nessun tipo di diffusione e una bassa confusione (perchè?).
+  
 \end{frame}
+
 
 \begin{frame}{DES \& AES}
   
@@ -287,6 +423,102 @@
   \medskip
 
   La confusione e la diffusione vengono implementate effettuando un (elevato) numero di operazioni invertibili.
+  
+\end{frame}
+
+\begin{frame}{DES, 2DES, 3DES}
+
+  L'algoritmo DES, pubblicato nel 1975, utilizza una chiave a \textit{solo} 56 bit. 
+  
+  Rimase standard fino al 1999, quando un gruppo di ricercatori riuscì a rompere una chiave di crittazione in sole 22 ore.
+  
+  Con la potenza di calcolo odierna basterebbero poche ore.
+
+\begin{columns}
+\begin{column}{0.5\textwidth}
+  \medskip
+
+  Prima di introdure l'AES un'alternativa più \textit{robusta} (ed immediata) all'ormai violato algoritmo DES fu quella di ripetere il DES 3 volte (algoritmo 3DES).
+
+  \medskip
+  
+  Perchè 3DES e non 2DES?
+  
+  \medskip
+  
+  Usando 2 chiavi a 56 bit mi aspetterei la stessa sicurezza di una chiave a 112 bit, ma non è così...
+\end{column}
+\begin{column}{0.5\textwidth}  %%<--- here
+    \begin{center}
+     \includegraphics[width=0.7\textwidth]{img/2des}
+     \end{center}
+\end{column}
+\end{columns}
+
+
+\end{frame}
+
+
+\begin{frame}{Attacco Meet-In-The-Middle}
+
+\small
+
+  \textsc{C = 2DES$_{enc}$(M, k$_1$, k$_2$) = DES$_{enc}$(DES$_{enc}$(M, k$_2$), k$_1$)}
+  
+  \medskip
+  
+  \textsc{C$_1$ = DES$_{enc}$(M, k$_1$)}
+
+  \smallskip
+  
+  \textsc{C$_2$ = DES$_{enc}$(C$_1$, k$_2$)}
+
+  \medskip
+    
+  Come possiamo trovare le chiavi conoscendo $M$ e $C$? \\Con un attacco \textcolor{red}{Meet-In-The-Middle}
+  
+  \begin{center}
+    \includegraphics[width=8cm]{img/middle}
+  \end{center} 
+
+
+  Provo tutte le chiavi $k_1$ per generare \textsc{C$_1$ = DES$_{enc}$(M, k$_1$)}
+    
+  \smallskip
+  
+  Provo tutte le chiavi $k_2$ per generare \textsc{C$_1$ = DES$_{dec}$(C$_2$, k$_2$)}
+
+  \smallskip
+    
+  Quando trovo una collisione tra il primo e il secondo C$_1$ ho trovato la coppia (k$_1$, k$_2$).  
+
+  \smallskip
+
+  Risultato: $2$ chiavi a $56$ bit proteggono quanto una chiave a $57$ bit.
+
+\end{frame}
+
+\begin{frame}{Attack models}
+
+\medskip
+
+Classificazione degli attacchi in crittografia:
+
+\medskip
+
+\small
+
+\begin{itemize}
+  \item \textcolor{red}{Known-plaintext} attack: Accesso ad un numero limitato di coppie messaggio/cifrato
+  \medskip
+  \item \textcolor{red}{Ciphertext-only} attack: Accesso solo al messaggio cifrato.
+  \medskip
+  \item \textcolor{red}{Chosen plaintext} attack: Possibilità di scegliere messaggi da cifrare (encrypt oracle)
+  \medskip
+  \item \textcolor{red}{Chosen ciphertext} attack: Possibilit di scegliere messaggi cifrati da decifrare (decrypt oracle) 
+  \medskip
+  \item \textcolor{red}{Side-channel} attack: Uso di informazioni \textit{"esterne"} per rompere il cifrario (tempo, suono, errori, ...)
+\end{itemize}
   
 \end{frame}
 
@@ -488,6 +720,58 @@ Se $n_1 = p*q^{'}$ e $n_2 = p*q^{''}$ allora $p = \gcd(n_1, n_2)$.
 
 \end{frame}
 
+\begin{frame}{OpenSSL per l'RSA}
+
+OpenSSL è un'implementazione open source dei protocolli SSL e TLS. OpenSSL implementa e fornisce i tools per i più importanti protocolli crittografici.
+
+\medskip
+
+Generare un numero primo a $n$ bits:\\ \phantom{ - } \textsc{openssl prime -generate -bit 64}
+
+Generare una chiave RSA a $n$ bits:\\ \phantom{ - } \textsc{openssl genrsa -out example.key 512}
+
+Stampare i parametri della chiave privata:\\ \phantom{ - } \textsc{openssl rsa -in example.key -text -noout}
+
+Stampare chiave pubblica da chiave privata:\\ \phantom{ - } \textsc{openssl rsa -in example.key -pubout}
+
+Stampare il modulo da chiave privata:\\ \phantom{ - } \textsc{openssl rsa -in example.key -noout -modulus}
+
+
+\end{frame}
+
+\begin{frame}{Attacchi all'RSA}
+
+\url{https://github.com/Ganapati/RsaCtfTool}
+ 
+Implementazione dei più classici attacchi all'RSA, tipo:
+
+\small
+
+\medskip
+
+- Weak public key factorization\\
+- Small q (q less than 100,000)\\
+- Fermat's factorisation for close p and q\\
+- Past CTF Primes method\\
+- Common factor attacks across multiple keys\\
+
+\medskip
+
+Trovare la chiave privata:\\
+\phantom{    } \textsc{./RsaCtfTool.py --publickey ./key.pub --private}
+
+Dumpare i parametri da una chiave:\\
+\phantom{    } \textsc{./RsaCtfTool.py --dumpkey --key ./key.pub}
+
+Decifrare file:\\
+\phantom{    } \textsc{./RsaCtfTool.py --publickey ./key.pub --uncipherfile ./ciphered\_file}
+
+Romperere multiple chiavi pubbliche con fattori comuni:\\
+\phantom{    } \textsc{./RsaCtfTool.py --publickey "*.pub" --private}
+
+
+\end{frame}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -567,7 +851,7 @@ Utilizzi pratici:
     
 \end{frame}
 
-\begin{frame}{Trovare le collisioni pt.1}
+\begin{frame}{Trovare le collisioni}
 
     Come trovo una collisione / preimmagine?
     
@@ -592,7 +876,31 @@ Utilizzi pratici:
     
 \end{frame}
 
-\begin{frame}{Trovare le collisioni pt.2}
+\begin{frame}{Trovare le collisioni}
+
+    John The Ripper
+    
+    \medskip
+    
+    \centering\includegraphics[width=8cm]{img/john}
+    
+\end{frame}
+
+\begin{frame}{Crackare gli zip: \textit{fcrackzip}}
+
+\textsc{fcrackzip} è un tool per il \textit{recupero} di password smarrite di archivi compressi.
+
+\smallskip
+
+\centering
+
+\includegraphics[width=7cm]{img/fcrackzip}
+
+Comando tipico: \textit{fcrackzip -b -u -v -l 3-4 prova.zip}    
+
+\end{frame}
+
+\begin{frame}{Trovare le collisioni}
 
     John The Ripper
     
@@ -602,19 +910,32 @@ Utilizzi pratici:
     
 \end{frame}
     
-\begin{frame}{Trovare le collisioni pt.3}
+\begin{frame}{Trovare le collisioni}
 
     Hashcat
     
     \medskip
     
-    \centering\includegraphics[width=8cm]{img/hashcat}
+    \centering\includegraphics[width=7cm]{img/hashcat}
     
 \end{frame}
     
-\begin{frame}{Basta un poco di sale...}
+\begin{frame}{Come difendersi (lato client)}
+
+\centering
+
+Scegliere la giusta password
+
+\includegraphics[width=7cm]{img/xkcd}
+
+Usare un token per la 2FA
+
+\end{frame}
+
+
+\begin{frame}{Come difendersi (lato server)}
   
-  ...e la password non va giù.
+  Basta un poco di sale...
   
   \medskip
 
@@ -655,6 +976,9 @@ Utilizzi pratici:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{Fine}
+
+\centering\includegraphics[width=10cm]{img/expert}
+
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
